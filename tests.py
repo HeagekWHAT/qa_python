@@ -3,14 +3,6 @@ from main import BooksCollector
 
 class TestBooksCollector:
 
-    def test__init__books_rating(self):  # Проверка создания пустого словаря.
-        collector = BooksCollector()
-        assert collector.books_rating == {}
-
-    def test__init__favorites(self):  # Проверка создания пустого списка.
-        collector = BooksCollector()
-        assert collector.favorites == []
-
     def test_add_new_book_add_two_books(self):  # Добавление двух книг.
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
