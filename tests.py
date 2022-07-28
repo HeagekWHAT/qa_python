@@ -18,19 +18,19 @@ class TestBooksCollector:
     def test_set_book_rating_which_is_not_in_the_list(self):  # Нельзя выставить рейтинг книге, которой нет в списке.
         collector = BooksCollector()
         collector.set_book_rating('Гордость и предубеждение и зомби', 8)
-        assert len(collector.books_rating) == 0
+        assert len(collector.get_books_rating()) == 0
 
     def test_set_book_rating_less_than_1(self):  # Нельзя выставить рейтинг меньше 1.
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.set_book_rating('Гордость и предубеждение и зомби', 0)
-        assert collector.books_rating['Гордость и предубеждение и зомби'] != 0
+        assert collector.get_books_rating() == {'Гордость и предубеждение и зомби': 1}
 
     def test_set_book_rating_more_than_10(self):  # Нельзя выставить рейтинг больше 10.
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.set_book_rating('Гордость и предубеждение и зомби', 11)
-        assert collector.books_rating['Гордость и предубеждение и зомби'] < 10
+        assert collector.get_books_rating() == {'Гордость и предубеждение и зомби': 1}
 
     def test_get_book_rating_at_not_added_book_not_rating(self):  # У не добавленной книги нет рейтинга.
         collector = BooksCollector()
@@ -65,7 +65,7 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.add_book_in_favorites('Гордость и предубеждение и зомби')
-        assert collector.favorites == ['Гордость и предубеждение и зомби']
+        assert collector.get_list_of_favorites_books() == ['Гордость и предубеждение и зомби']
 
     def test_delete_book_from_favorites(self):  # Удаление книги из избранного.
         collector = BooksCollector()
